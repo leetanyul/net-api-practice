@@ -1,0 +1,105 @@
+# Build Folders (binaries)
+bin/
+obj/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+logs/
+
+# Debug and Release folders
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]*/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Crash reports
+crashlytics/
+
+# .NET Core / .NET 5+ Packages
+*.nupkg
+*.snupkg
+
+# Visual Studio files
+.vscode/
+.vs/
+.vscode-test/
+
+# ASP.NET Scaffolding
+.scaffolding/
+
+# Entity Framework Core Migrations
+Migrations/
+
+# Rider projects
+.idea/
+*.sln.iml
+.idea_modules/
+.idea/structure/
+.idea/dataSources/
+.idea/httpRequests/
+.idea/sql/
+.idea/codeStyles/
+.idea/codestyles.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/shelf/
+.idea/workspace.xml/
+
+# Visual Studio Code specific files
+.vscode/
+
+# ASP.NET Razor Temporary Files
+.globals/
+
+# IIS
+IISExpress/
+
+# Backup & redundant files
+*.bak
+*.old
+*.orig
+
+# Thumbnails
+Thumbs.db
+
+# Database files
+*.mdf
+*.ldf
+*.db
+
+# Static files
+wwwroot/
+
+# JetBrains ReSharper
+_ReSharper.Caches/
+.idea/
+
+# NPM modules
+node_modules/
+
+# Mac System files
+.DS_Store
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Rider-specific
+.idea/
+.idea_modules/
+.idea_code/
+
+# Others
+*.lock.json
