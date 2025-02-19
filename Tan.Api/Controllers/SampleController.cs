@@ -1,14 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using System.Net;
-using Tan.Api.Attributes.Authorizations;
+using Microsoft.AspNetCore.Authorization;
 using Tan.Application.Dtos;
 using Tan.Application.Facades.Interfaces;
 
 namespace Tan.Api.Controllers;
 
-[Authorize]
 [ApiController]
 [Route("api/v1/[controller]")]
 public class SampleController(
@@ -16,6 +13,7 @@ public class SampleController(
     ISampleFacade customerFacade) : ControllerBase
 {
     [HttpGet]
+    [Authorize(Policy = "sample:r")]
     public async Task<ActionResult<PaginationDto<SampleResponseDto>>> Get(
     [FromQuery] SampleFilterDto customerFilterDto, CancellationToken cancellationToken)
     {
@@ -40,6 +38,7 @@ public class SampleController(
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpGet("{id}")]
+    [Authorize(Policy = "sample:r")]
     public async Task<ActionResult<SampleResponseDto>> Get(long id, CancellationToken cancellationToken)
     {
         try
@@ -62,6 +61,7 @@ public class SampleController(
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
+    [Authorize(Policy = "sample:w")]
     public async Task<IActionResult> Post([FromBody] SampleRequestDto customerRequestDto,
         CancellationToken cancellationToken)
     {
@@ -76,6 +76,7 @@ public class SampleController(
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPut]
+    [Authorize(Policy = "sample:w")]
     public async Task<IActionResult> Put(long id, [FromBody] SampleRequestDto customerRequestDto,
         CancellationToken cancellationToken)
     {
@@ -89,6 +90,7 @@ public class SampleController(
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpDelete]
+    [Authorize(Policy = "sample:w")]
     public async Task<IActionResult> Delete(long id, CancellationToken cancellationToken)
     {
         return NoContent();
