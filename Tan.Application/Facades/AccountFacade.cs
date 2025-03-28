@@ -9,15 +9,13 @@ namespace Tan.Application.Facades;
 
 public class AccountFacade(IJwtService jwtService, IMapper mapper) : IAccountFacade
 {
-    public async Task<ApiResponseDto<string>> GenerateTokenAsync(UserInfoDto filterDto,
+    public async Task<string> GenerateTokenAsync(UserInfoDto filterDto,
         CancellationToken cancellationToken)
     {
         var filter = mapper.Map<UserInfoFilter>(filterDto);
 
         var result = await jwtService.GenerateTokenAsync(filter, cancellationToken);
 
-        var responseDto = mapper.Map<ApiResponseDto<string>>(result);
-
-        return responseDto;
+        return result;
     }
 }

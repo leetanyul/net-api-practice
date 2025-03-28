@@ -4,5 +4,5 @@ namespace Tan.Application.Facades.Interfaces;
 
 public interface IAccountFacade
 {
-    Task<ApiResponseDto<string>> GenerateTokenAsync(UserInfoDto filterDto, CancellationToken cancellationToken);
+    Task<string> GenerateTokenAsync(UserInfoDto filterDto, CancellationToken cancellationToken);
 }

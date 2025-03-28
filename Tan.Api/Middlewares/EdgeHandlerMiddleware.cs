@@ -1,4 +1,6 @@
-﻿namespace Tan.Api.Middlewares;
+﻿using Tan.Api.Utils;
+
+namespace Tan.Api.Middlewares;
 
 /// <summary>
 /// 서비스 제일 외곽에 위치하는 미들웨어로 api 요청에 해당 request 롸 response logging 및 예외 처리 용으로 사용
@@ -11,12 +13,18 @@ public class EdgeHandlerMiddleware(
     {
         try
         {
+            // log에 리퀘스트 추척 id 남기기
+            LoggingContext.TraceId = context.TraceIdentifier;
             // todo: request logging
             await next(context);
             // todo: response logging
         }
         catch (Exception ex)
         {
+        }
+        finally
+        {
+            LoggingContext.Clear();
         }
     }
 }

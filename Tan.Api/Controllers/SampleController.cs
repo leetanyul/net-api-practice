@@ -14,20 +14,21 @@ public class SampleController(
 {
     [HttpGet]
     [Authorize(Policy = "sample:r")]
-    public async Task<ActionResult<PaginationDto<SampleResponseDto>>> Get(
-    [FromQuery] SampleFilterDto customerFilterDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(
+        [FromQuery] SampleFilterDto customerFilterDto,
+        CancellationToken cancellationToken)
     {
         try
         {
             var result = await customerFacade.GetListByFilterAsync(customerFilterDto, cancellationToken);
-            return result;
+
+            return Ok(ApiResponseDto<PaginationDto<SampleResponseDto>>.Success(result));
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Sample get ex Activity Id : {activityId}",
-                Activity.Current?.Id);
+            logger.LogError(ex, "Sample get");
 
-            return BadRequest(ex.Message);
+            return BadRequest(ApiResponseDto<PaginationDto<SampleResponseDto>>.Fail(ex.Message));
         }
     }
 
@@ -39,18 +40,19 @@ public class SampleController(
     /// <returns></returns>
     [HttpGet("{id}")]
     [Authorize(Policy = "sample:r")]
-    public async Task<ActionResult<SampleResponseDto>> Get(long id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(long id, CancellationToken cancellationToken)
     {
         try
         {
-            return new SampleResponseDto();
+            // 추후 구현 예정
+            var result = new SampleResponseDto();
+            return Ok(ApiResponseDto<SampleResponseDto>.Success(result));
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Sample get(id) ex Activity Id : {activityId}",
-                Activity.Current?.Id);
+            logger.LogError(ex, "Sample get(id)");
 
-            return BadRequest(ex.Message);
+            return BadRequest(ApiResponseDto<SampleResponseDto>.Fail(ex.Message));
         }
     }
 
@@ -63,9 +65,20 @@ public class SampleController(
     [HttpPost]
     [Authorize(Policy = "sample:w")]
     public async Task<IActionResult> Post([FromBody] SampleRequestDto customerRequestDto,
-        CancellationToken cancellationToken)
+         CancellationToken cancellationToken)
     {
-        return CreatedAtAction(nameof(Get), new { }, new { });
+        try
+        {
+            // 추후 구현 예정
+            var result = new SampleResponseDto();
+            return Ok(ApiResponseDto<SampleResponseDto>.Success(result));
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Sample post");
+
+            return BadRequest(ApiResponseDto<SampleResponseDto>.Fail(ex.Message));
+        }
     }
 
     /// <summary>
@@ -78,9 +91,20 @@ public class SampleController(
     [HttpPut]
     [Authorize(Policy = "sample:w")]
     public async Task<IActionResult> Put(long id, [FromBody] SampleRequestDto customerRequestDto,
-        CancellationToken cancellationToken)
+         CancellationToken cancellationToken)
     {
-        return NoContent();
+        try
+        {
+            // 추후 구현 예정
+            var result = new SampleResponseDto();
+            return Ok(ApiResponseDto<SampleResponseDto>.Success(result));
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Sample put");
+
+            return BadRequest(ApiResponseDto<SampleResponseDto>.Fail(ex.Message));
+        }
     }
 
     /// <summary>
@@ -93,6 +117,17 @@ public class SampleController(
     [Authorize(Policy = "sample:w")]
     public async Task<IActionResult> Delete(long id, CancellationToken cancellationToken)
     {
-        return NoContent();
+        try
+        {
+            // 추후 구현 예정
+            var result = new SampleResponseDto();
+            return Ok(ApiResponseDto<SampleResponseDto>.Success(result));
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Sample delete");
+
+            return BadRequest(ApiResponseDto<SampleResponseDto>.Fail(ex.Message));
+        }
     }
 }
