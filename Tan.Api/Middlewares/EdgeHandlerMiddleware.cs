@@ -15,6 +15,7 @@ public class EdgeHandlerMiddleware(
         {
             // log에 리퀘스트 추척 id 남기기
             LoggingContext.TraceId = context.TraceIdentifier;
+            logger.LogInformation("test");
             // todo: request logging
             await next(context);
             // todo: response logging
